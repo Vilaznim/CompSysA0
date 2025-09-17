@@ -3,8 +3,6 @@
 #include <string.h> // strerror.
 #include <errno.h>  // errno.
 
-// 2.1 vi mangler på side 3 non-empty substring ikke lavet
-
 enum file_type
 {
   DATA,
@@ -12,6 +10,7 @@ enum file_type
   ASCII,
   ISO_8859,
   UTF8,
+  VERY_SHORT
 };
 
 const char *const FILE_TYPE_STRINGS[] = {
@@ -19,12 +18,15 @@ const char *const FILE_TYPE_STRINGS[] = {
     "empty",
     "ASCII text",
     "ISO-8859 text",
-    "UTF-8 Unicode text"};
+    "Unicode text",
+    "very short file (no magic)"};
 
 enum file_type identify_file_type(const unsigned char *bytes, size_t length)
 {
   if (length == 0)
     return EMPTY;
+  if (length <= 1)
+    return VERY_SHORT;
 
   // Check ASCII (allowed ranges: 0x07–0x0D, 0x1B, 0x20–0x7E)
   size_t i = 0;
