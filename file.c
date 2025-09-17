@@ -4,9 +4,7 @@
 #include <errno.h>  // errno.
 #include <assert.h> // assert.
 
-//int print_hello_world(void) {
-  //return fprintf(stdout, "Hello, world!\n");
-//}
+
 
 int main(int argc, char *argv[]) {
   assert (argc == 2);
@@ -20,9 +18,5 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
   }
 
-//  if (print_hello_world() <= 0) {
-//    retval = EXIT_FAILURE;
- // }
-//testing now
- // return retval;
+
 }
