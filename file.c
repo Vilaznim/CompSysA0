@@ -7,7 +7,10 @@
 
 
 int main(int argc, char *argv[]) {
-  assert (argc == 2);
+  if (assert(argc == 2), argc != 2) {
+    fprintf(stderr, "Usage: file path\n");
+    return EXIT_FAILURE;
+  }
 
   if (fopen(argv[1], "r") == NULL) {
     fprintf("Usage: file path\n");
