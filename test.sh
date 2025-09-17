@@ -55,12 +55,40 @@ printf "!" > test_files/ascii_exclaim.input
 # File with only numbers
 printf "0123456789" > test_files/ascii_numbers.input
 
+### utf-8 tests ###
+# Valid single-byte UTF-8 (ASCII)
+printf "A" > test_files/utf8_ascii.input
+
+# Valid two-byte UTF-8 (e.g., 'æ' U+00E6)
+printf "\xC3\xA6" > test_files/utf8_ae.input
+
+# Valid three-byte UTF-8 (e.g., '€' U+20AC)
+printf "\xE2\x82\xAC" > test_files/utf8_euro.input
+
+# Valid four-byte UTF-8 (e.g., U+1F600 '😀')
+printf "\xF0\x9F\x98\x80" > test_files/utf8_emoji.input
+
+# Mixed valid UTF-8 (ASCII + multi-byte)
+printf "A\xC3\xA6\xE2\x82\xAC\xF0\x9F\x98\x80" > test_files/utf8_mixed.input
+
+# Lone continuation byte (invalid UTF-8)
+printf "\x80" > test_files/utf8_lone_cont.input
+
+# Valid two-byte followed by invalid byte
+printf "\xC3\xA6\xFF" > test_files/utf8_valid_invalid.input
+
+# Valid three-byte followed by ASCII
+printf "\xE2\x82\xAC""A" > test_files/utf8_three_ascii.input
+
+
+
 echo "Running the tests.."
 exitcode=0
 for f in test_files/*.input
 do
   echo ">>> Testing ${f}.."
   file    ${f} | sed -e 's/ASCII text.*/ASCII text/' \
+                         -e 's/Unicode text.*/Unicode text/' \
                          -e 's/UTF-8 Unicode text.*/UTF-8 Unicode text/' \
                          -e 's/ISO-8859 text.*/ISO-8859 text/' \
                          -e 's/writable, regular file, no read permission/cannot determine (Permission denied)/' \
