@@ -5,6 +5,9 @@
 #include <assert.h> // assert.
 
 
+int print_error(char *path, int errnum){
+  return fprintf(stdout, "%s: cannot determine (%s)\n", path, strerror(errnum));
+}
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {
@@ -24,6 +27,3 @@ int main(int argc, char *argv[]) {
   }
 }
 
-int print_error(char *path, int errnum){
-  return fprintf(stdout, "%s: cannot determine (%s)\n", path, strerror(errnum));
-}
