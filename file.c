@@ -6,9 +6,40 @@
 
 //2.1 vi mangler på side 3 non-empty substring ikke lavet
 
+enum file_type {
+    DATA,
+    EMPTY,
+    ASCII,
+    ISO_8859,
+    UTF8,
+};
+
+const char * const FILE_TYPE_STRINGS[] = {
+    "data",
+    "empty",
+    "ASCII text",
+    "ISO-8859 text",
+    "UTF-8 Unicode text"
+};
+
+enum file_type identify_file_type(const unsigned char *bytes, size_t length) {
+    if (length == 0) 
+      return EMPTY;
+
+    // Check ASCII
+    for (size_t i = 0; i < length; ++i) {
+        unsigned char b = bytes[i];
+        if (!((b >= 0x07 && b <= 0x0D) || b == 0x1B || (b >= 0x20 && b <= 0x7E))) {
+            goto check_iso;
+        }
+    }
+    return ASCII;
+}
+
 int print_error(char *path, int errnum){
   return fprintf(stdout, "%s: cannot determine (%s)\n", path, strerror(errnum));
 }
+
 
 int main(int argc, char *argv[]) {
   if (argc < 2) {
