@@ -3,9 +3,9 @@
 #include <string.h> // strerror.
 #include <errno.h>  // errno.
 
-int print_hello_world(void) {
-  return fprintf(stdout, "Hello, world!\n");
-}
+//int print_hello_world(void) {
+  //return fprintf(stdout, "Hello, world!\n");
+//}
 
 int main(int argc, char *argv[]) {
   assert (argc == 2);
@@ -15,9 +15,9 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   }
 
-  if (print_hello_world() <= 0) {
-    retval = EXIT_FAILURE;
-  }
+//  if (print_hello_world() <= 0) {
+//    retval = EXIT_FAILURE;
+ // }
 //testing now
-  return retval;
+ // return retval;
 }
