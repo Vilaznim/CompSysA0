@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (fopen(argv[1], "r") == NULL) {
-    printf("Usage: file path\n");
+    print_error(argv[1], errno);
     return EXIT_FAILURE;
 
   } else {
@@ -22,6 +22,8 @@ int main(int argc, char *argv[]) {
     system(cmd);
     return EXIT_SUCCESS;
   }
+}
 
-
+int print_error(char *path, int errnum){
+  return fprintf(stdout, "%s: cannot determine (%s)\n", path, strerror(errnum));
 }
