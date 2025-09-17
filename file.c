@@ -4,6 +4,7 @@
 #include <errno.h>  // errno.
 #include <assert.h> // assert.
 
+//2.1 vi mangler på side 3 non-empty substring ikke lavet
 
 int print_error(char *path, int errnum){
   return fprintf(stdout, "%s: cannot determine (%s)\n", path, strerror(errnum));
@@ -17,7 +18,7 @@ int main(int argc, char *argv[]) {
 
   if (fopen(argv[1], "r") == NULL) {
     print_error(argv[1], errno);
-    return EXIT_FAILURE;
+    return EXIT_SUCCESS;
 
   } else {
     char cmd[256];
