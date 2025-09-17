@@ -14,7 +14,10 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
 
   } else {
-    fprintf(stdout, "File '%s' opened successfully.\n", argv[1]);
+    fprintf(stdout, "File '%s' Exists.\n", argv[1]);
+    char cmd[256];
+    snprintf(cmd, sizeof(cmd), "file %s", argv[1]);
+    system(cmd);
     return EXIT_SUCCESS;
   }
 
