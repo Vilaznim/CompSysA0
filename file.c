@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
   assert (argc == 2);
 
   if (fopen(argv[1], "r") == NULL) {
-    fprintf(stderr, "Usage: file path", argv[1], strerror(errno));
+    fprintf(stderr, "Usage: file path '%s': %s\n", argv[1], strerror(errno));
     return EXIT_FAILURE;
 
   } else {
