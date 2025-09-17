@@ -7,7 +7,7 @@
 
 
 int main(int argc, char *argv[]) {
-  if (assert(argc == 2), argc != 2) {
+  if (argc < 2) {
     fprintf(stderr, "Usage: file path\n");
     return EXIT_FAILURE;
   }
