@@ -8,8 +8,10 @@ int print_hello_world(void) {
 }
 
 int main(int argc, char *argv[]) {
-  if (argc !=1) {
-    fprintf("Only one argument is expected. \n");
+  assert (argc == 2);
+
+  if (fopen(argv[1], "r") == NULL) {
+    fprintf(stderr, "Error opening file '%s': %s\n", argv[1], strerror(errno));
     return EXIT_FAILURE;
   }
 
