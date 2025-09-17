@@ -50,6 +50,12 @@ printf 'Latin1 ü: \xFC\n' > test_files/iso3.input
 printf 'Punct: \xA1 \xBF \xAB \xBB\n' > test_files/iso4.input
 printf 'Latin1 ç: \xE7\n' > test_files/iso5.input
 printf 'Latin1 é: \xE9\n' > test_files/iso6.input
+printf 'Accents: \xE9 \xE8 \xE0\n' > test_files/iso7.input
+printf 'Caps: \xC4 \xD6 \xDC\n' > test_files/iso8.input 
+printf 'Punct: \xA1 \xBF \xAB \xBB\n' > test_files/iso9.input
+printf 'Currency: \xA2 \xA3 \xA5\n' > test_files/iso10.input
+printf 'Misc: \xFF \xDF \xF1\n' > test_files/iso11.input
+printf 'Math: \xB1 \xB5 \xF7\n' > test_files/iso12.input
 
 printf "" > test_files/empty.input
 ### TODO: Generate more test files ###
