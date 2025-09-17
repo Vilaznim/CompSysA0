@@ -18,6 +18,42 @@ printf "Hello,\x00World!\n" > test_files/data.input
 printf "" > test_files/empty.input
 ### TODO: Generate more test files ###
 
+### ascii tests ###
+# Only allowed control characters
+printf "\x07\x08\x09\x0A\x0B\x0C\x0D" > test_files/ascii_ctrl.input
+
+# Only ESC character
+printf "\x1B" > test_files/ascii_esc.input
+
+# Only printable ASCII
+printf "ABCDEFGHIJKLMNOPQRSTUVWXYZ" > test_files/ascii_print.input
+
+# All printable ASCII
+printf "$(printf '\\x%02X' {32..126} | xxd -r -p)" > test_files/ascii_all_print.input
+
+# Mixture of control and printable
+printf "\x07Hello\x0AWorld\x1B!" > test_files/ascii_mix.input
+
+# Single allowed character
+printf "A" > test_files/ascii_single.input
+
+# All allowed control and printable characters
+printf "\x07\x08\x09\x0A\x0B\x0C\x0D\x1B$(printf '\\x%02X' {32..126} | xxd -r -p)" > test_files/ascii_full.input
+
+# File with forbidden character (should not be ASCII)
+printf "Hello\x00World" > test_files/ascii_forbidden.input
+
+# File with only space
+printf " " > test_files/ascii_space.input
+
+# File with only tilde
+printf "~" > test_files/ascii_tilde.input
+
+# File with only exclamation mark
+printf "!" > test_files/ascii_exclaim.input
+
+# File with only numbers
+printf "0123456789" > test_files/ascii_numbers.input
 
 echo "Running the tests.."
 exitcode=0
