@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (fopen(argv[1], "r") == NULL) {
-    fprintf("Usage: file path\n");
+    printf("Usage: file path\n");
     return EXIT_FAILURE;
 
   } else {
